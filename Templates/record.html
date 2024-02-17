@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Speech & Emotion Analysis</title>
+  <link rel="stylesheet" href="styles.css">
+  <style> </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Record</h1>
+    </header>
+    <main>
+        <div class="left">
+            <div id="startButton" class="button">Start Recording</div>
+            <h2>Preview</h2>
+            <video id="preview" width="160" height="120" autoplay muted></video>
+          </div>
+          
+          <div class="right">
+            <div id="stopButton" class="button">Stop Recording</div>
+            <h2>Recording</h2>
+            <video id="recording" width="160" height="120" controls></video>
+            <a id="downloadButton" class="button">Download</a>
+          </div>          
+    </main>
+  </div>
+  <script>
+    let preview = document.getElementById("preview");
+    let recording = document.getElementById("recording");
+    let startButton = document.getElementById("startButton");
+    let stopButton = document.getElementById("stopButton");
+    let downloadButton = document.getElementById("downloadButton");
+    let logElement = document.getElementById("log");    
+  </script>
+</body>
+</html>
