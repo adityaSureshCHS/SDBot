@@ -45,30 +45,23 @@
       text-align: center;
     }
 
-    .result-container {
-      border: 2px solid #004d99;
-      padding: 30px;
-      border-radius: 15px;
-      background-color: #f9f9f9;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    .startSpeechBtn, .startDebateBtn {
+      background-color: #004d99;
+      color: #fff;
+      font-size: 20px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 30px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
     }
 
-    .analysis-details {
-      text-align: left;
-      margin-bottom: 20px;
+    .startSpeechBtn:hover, .startDebateBtn:hover {
+      background-color: #003366;
     }
-
-    .analysis-details p {
-      font-size: 18px;
-      color: #555;
-    }
-
-    .analysis-details h2 {
-      font-size: 24px;
-      color: #004d99;
-      margin-bottom: 10px;
-    }
-
+    
     footer {
       text-align: center;
       margin-top: 50px;
@@ -84,20 +77,12 @@
       <p>Get your arguments analyzed and receive personalized recommendations based on your tone and facial emotion.</p>
     </header>
     <main>
-      <button id="startSpeechBtn">Start Analyzing Your Speech</button>
-      <button id="startDebateBtn">Start Analyzing Your Debate</button>
+      <button class="startSpeechBtn" onclick="window.location.href='speech_analysis.html'">Start your Speech Analysis</button>
+      <button class="startDebateBtn" onclick="window.location.href='main.html'">Start your Debate Analysis</button>
     </main>
     <footer>
       <p>Designed by YourCompany | All rights reserved</p>
     </footer>
   </div>
-  <script>
-    document.getElementById("startSpeechBtn").addEventListener("click", function() {
-      window.location.href = "speech_analysis.html"; // Redirect to the speech analysis page
-    });
-    //hi
-  </script>
 </body>
 </html>
-
-
