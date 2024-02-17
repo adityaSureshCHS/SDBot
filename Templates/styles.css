@@ -1,57 +1,59 @@
-body {
+@keyframes fallIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  
+  body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #fff; /* Set background color to white */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), linear-gradient(135deg, #ff8c00, #000000, #ffff00);
   }
   
   .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
+    min-height: 100vh; /* Ensure container fills at least the viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
   }
   
   header {
     margin-bottom: 50px;
+    text-align: center;
   }
   
   .logo {
     width: 100px; /* Adjust as needed */
-    position: absolute;
-    top: 20px;
-    left: 20px;
+    margin-bottom: 20px;
   }
   
   header h1 {
     font-size: 48px;
-    color: #333;
-    margin-bottom: 20px;
+    color: #fff; /* White color for text */
+    margin-bottom: 10px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   header p {
     font-size: 24px;
-    color: #666;
+    color: #fff; /* White color for text */
     margin-bottom: 40px;
   }
   
-  .icon-container {
-    font-size: 48px;
-  }
-  
-  .icon-container i {
-    margin: 0 20px;
-    color: #007bff; /* Bright blue color */
-    transition: color 0.3s ease;
-  }
-  
-  .icon-container i:hover {
-    color: #0056b3; /* Darker blue color on hover */
-  }
-  
   main {
-    text-align: left;
+    text-align: center;
   }
   
   .features, .about {
@@ -59,20 +61,31 @@ body {
   }
   
   .features h2, .about h2 {
-    color: #007bff; /* Bright blue color */
+    color: #fff; /* White color for headings */
     margin-bottom: 20px;
   }
   
-  .features ul {
-    list-style-type: none;
-    padding-left: 0;
+  .features ul, .about ul {
+    list-style: none;
+    padding: 0;
   }
   
-  .features ul li {
+  .features ul li, .about ul li {
     margin-bottom: 10px;
+    color: #eee; /* Light gray color for text */
+    font-size: 18px;
+    animation: fallIn 1s ease forwards;
+    opacity: 0;
+    transform: translateY(-100%);
   }
   
-  .about p {
-    color: #666;
+  footer {
+    margin-top: auto; /* Push footer to the bottom */
+    color: #eee; /* Light gray color for text */
+    text-align: center;
+  }
+  
+  footer p {
+    font-size: 14px;
   }
   
