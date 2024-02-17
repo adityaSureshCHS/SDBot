@@ -2,68 +2,77 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #fff; /* Set background color to white */
   }
   
   .container {
-    max-width: 800px;
-    margin: 50px auto;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
   }
   
   header {
-    text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
+  }
+  
+  .logo {
+    width: 100px; /* Adjust as needed */
+    position: absolute;
+    top: 20px;
+    left: 20px;
   }
   
   header h1 {
+    font-size: 48px;
     color: #333;
-    font-size: 36px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   header p {
+    font-size: 24px;
     color: #666;
-    font-size: 18px;
+    margin-bottom: 40px;
+  }
+  
+  .icon-container {
+    font-size: 48px;
+  }
+  
+  .icon-container i {
+    margin: 0 20px;
+    color: #007bff; /* Bright blue color */
+    transition: color 0.3s ease;
+  }
+  
+  .icon-container i:hover {
+    color: #0056b3; /* Darker blue color on hover */
   }
   
   main {
-    text-align: center;
-  }
-  
-  button {
-    padding: 15px 30px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .result-container {
-    margin-top: 30px;
-    padding: 20px;
-    border: 2px dashed #ccc;
-    border-radius: 10px;
-    background-color: #f5f5f5;
     text-align: left;
   }
   
-  footer {
-    margin-top: 50px;
-    text-align: center;
+  .features, .about {
+    margin-bottom: 50px;
   }
   
-  footer p {
+  .features h2, .about h2 {
+    color: #007bff; /* Bright blue color */
+    margin-bottom: 20px;
+  }
+  
+  .features ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .features ul li {
+    margin-bottom: 10px;
+  }
+  
+  .about p {
     color: #666;
-    font-size: 14px;
   }
   
