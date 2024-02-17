@@ -94,15 +94,35 @@
       color: #fff;
       font-size: 14px;
     }
+
+    .input-container {
+      margin-bottom: 20px;
+    }
+
+    .input-container label {
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    .input-container input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
   </style>
 </head>
 
 <body>
-  <button onclick="window.location.href='main.html'" class = "button">Return to Home Page</button>
+  <button onclick="window.location.href='main.html'" class="button">Return to Home Page</button>
   <div class="container">
     <header>
       <h1>Record</h1>
     </header>
+    <div class="input-container">
+      <label for="speechLength">Enter the length of your speech (in seconds):</label>
+      <input type="text" id="speechLength" placeholder="Enter length in seconds">
+    </div>
     <main>
     
       
@@ -113,7 +133,7 @@
       </div>
       
       <div class="right">
-        <button id="stopButton" class="button">Stop Recording</button>
+        
         <h2>Recording</h2>
         <div id="recordingContainer">
           <video id="recording" width="320" height="240" controls></video>
@@ -123,7 +143,7 @@
  
     </main>
     <footer>
-      <p>Designed by YourCompany | All rights reserved</p>
+      
     </footer>
   </div>
   <script>
@@ -132,7 +152,6 @@
     let startButton = document.getElementById("startButton");
     let stopButton = document.getElementById("stopButton");
     let downloadButton = document.getElementById("downloadButton");
-    let recordingTimeMS = 5000;
 
     function wait(delayInMS) {
         return new Promise((resolve) => setTimeout(resolve, delayInMS));
@@ -166,25 +185,32 @@
       startButton.addEventListener(
   "click",
   () => {
-    navigator.mediaDevices
-      .getUserMedia({
-        video: true,
-        audio: true,
-      })
-      .then((stream) => {
-        preview.srcObject = stream;
-        downloadButton.href = stream;
-        preview.captureStream =
-          preview.captureStream || preview.mozCaptureStream;
-        return new Promise((resolve) => (preview.onplaying = resolve));
-      })
-      .then(() => startRecording(preview.captureStream(), recordingTimeMS))
-      .then((recordedChunks) => {
-        let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
-        recording.src = URL.createObjectURL(recordedBlob);
-        downloadButton.href = recording.src;
-        downloadButton.download = "RecordedVideo.webm";
-      })  
+    const speechLengthInput = document.getElementById("speechLength");
+    const speechLengthInSeconds = parseInt(speechLengthInput.value, 10);
+    
+    if (!isNaN(speechLengthInSeconds)) {
+      navigator.mediaDevices
+        .getUserMedia({
+          video: true,
+          audio: true,
+        })
+        .then((stream) => {
+          preview.srcObject = stream;
+          downloadButton.href = stream;
+          preview.captureStream =
+            preview.captureStream || preview.mozCaptureStream;
+          return new Promise((resolve) => (preview.onplaying = resolve));
+        })
+        .then(() => startRecording(preview.captureStream(), speechLengthInSeconds * 1000))
+        .then((recordedChunks) => {
+          let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
+          recording.src = URL.createObjectURL(recordedBlob);
+          downloadButton.href = recording.src;
+          downloadButton.download = "RecordedVideo.webm";
+        });
+    } else {
+      alert("Please enter a valid number for speech length.");
+    }
   },
   false,
 );
