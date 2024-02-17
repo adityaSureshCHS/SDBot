@@ -92,14 +92,14 @@
   
   header h1 {
     font-size: 48px;
-    color: #fff; /* White color for text */
+    color: #2c2424; /* White color for text */
     margin-bottom: 10px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   header p {
     font-size: 24px;
-    color: #fff; /* White color for text */
+    color: #241d1d; /* White color for text */
     margin-bottom: 40px;
   }
   
