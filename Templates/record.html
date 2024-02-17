@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
   <title>Record A Video</title>
   <style>
     body {
@@ -43,6 +42,14 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+    }
+
+    .result-container {
+      max-width: 600px;
+      padding: 30px;
+      border-radius: 15px;
+      background: linear-gradient(to right top, #667eea, #764ba2);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     }
 
     header {
@@ -97,6 +104,7 @@
 
     .input-container {
       margin-bottom: 20px;
+      text-align: center;
     }
 
     .input-container label {
@@ -114,43 +122,38 @@
 </head>
 
 <body>
-  <button onclick="window.location.href='main.html'" class="button">Return to Home Page</button>
   <div class="container">
-    <header>
-      <h1>Record</h1>
-    </header>
-    <div class="input-container">
-      <label for="speechLength">Enter the length of your speech (in seconds):</label>
-      <input type="text" id="speechLength" placeholder="Enter length in seconds">
-    </div>
-    <main>
-    
-      
-      <div class="left">
-        <button id="startButton" class="button">Start Recording</button>
-        <h2>Preview</h2>
-        <video id="preview" width="320" height="240" autoplay muted></video>
+    <div class="result-container">
+      <header>
+        <h1>Record</h1>
+      </header>
+      <div class="input-container">
+        <label for="speechLength">Enter the length of your speech (in seconds):</label>
+        <input type="text" id="speechLength" placeholder="Enter length in seconds">
       </div>
-      
-      <div class="right">
-        
-        <h2>Recording</h2>
-        <div id="recordingContainer">
-          <video id="recording" width="320" height="240" controls></video>
+      <main>
+        <div class="left">
+          <button id="startButton" class="button">Start Recording</button>
+          <h2>Preview</h2>
+          <video id="preview" width="320" height="240" autoplay muted></video>
         </div>
-        <a id="downloadButton" class="button">Download</a>
-      </div>
- 
-    </main>
-    <footer>
-      
-    </footer>
+        <div class="right">
+          <h2>Recording</h2>
+          <div id="recordingContainer">
+            <video id="recording" width="320" height="240" controls></video>
+          </div>
+          <a id="downloadButton" class="button">Download</a>
+        </div>
+      </main>
+      <footer>
+        <button onclick="window.location.href='main.html'" class="button">Return to Home Page</button>
+      </footer>
+    </div>
   </div>
   <script>
     let preview = document.getElementById("preview");
     let recording = document.getElementById("recording");
     let startButton = document.getElementById("startButton");
-    let stopButton = document.getElementById("stopButton");
     let downloadButton = document.getElementById("downloadButton");
 
     function wait(delayInMS) {
