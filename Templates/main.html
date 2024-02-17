@@ -22,65 +22,37 @@
       height: 100vh;
     }
 
-    .container header {
-      text-align: center;
-      margin-bottom: 30px;
-      animation: fadeInUp 1s ease;
-    }
-
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .container .result-container {
-      max-width: 500px;
+    .result-container {
+      max-width: 600px;
       padding: 30px;
       border-radius: 15px;
       background: linear-gradient(to right top, #667eea, #764ba2);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-      animation: fadeIn 1s ease;
     }
 
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
     }
 
-    .container .analysis-details,
-    .container .recommendations {
+    h1 {
+      font-size: 42px;
+      color: #eef2f5;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    p {
+      font-size: 20px;
+      color: #f0f0f0;
       margin-bottom: 20px;
     }
 
-    .container .analysis-details h2,
-    .container .recommendations h3 {
-      text-align: left;
-      color: #fff;
-      margin-bottom: 10px;
+    main {
+      text-align: center;
     }
 
-    .container .analysis-details p,
-    .container .recommendations li {
-      color: #f0f0f0;
-      margin-bottom: 10px;
-    }
-
-    .container .buttons {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .container button {
+    button {
       background-color: #4e54c8;
       color: #fff;
       font-size: 18px;
@@ -92,7 +64,7 @@
       transition: background-color 0.3s ease;
     }
 
-    .container button:hover {
+    button:hover {
       background-color: #3f4db8;
     }
 
@@ -101,23 +73,24 @@
       margin-top: 50px;
       color: #ccc;
       font-size: 16px;
-      animation: fadeInUp 1s ease;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <header>
-      <h1>Welcome to Speech & Emotion Analysis</h1>
-      <p>Get your arguments analyzed and receive personalized recommendations based on your tone and facial emotion.</p>
-    </header>
-    <main>
-      <button onclick="window.location.href='speech_analysis.html'">Start your Speech Analysis</button>
-      <button onclick="window.location.href='debate_analysis.html'">Start your Debate Analysis</button>
-    </main>
-    <footer>
-      <p>Designed by YourCompany | All rights reserved</p>
-    </footer>
+    <div class="result-container">
+      <header>
+        <h1>Welcome to Speech & Emotion Analysis</h1>
+        <p>Get your arguments analyzed and receive personalized recommendations based on your tone and facial emotion.</p>
+      </header>
+      <main>
+        <button onclick="window.location.href='speech_analysis.html'">Start your Speech Analysis</button>
+        <button onclick="window.location.href='debate_analysis.html'">Start your Debate Analysis</button>
+      </main>
+      <footer>
+        <p>Designed by YourCompany | All rights reserved</p>
+      </footer>
+    </div>
   </div>
 </body>
 </html>
