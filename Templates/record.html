@@ -3,107 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Speech & Emotion Analysis</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-image: linear-gradient(to right bottom, #4e54c8, #8f94fb);
-      color: #fff;
-      overflow: hidden;
-    }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .container header {
-      text-align: center;
-      margin-bottom: 30px;
-      animation: fadeInUp 1s ease;
-    }
-
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .container .result-container {
-      max-width: 500px;
-      padding: 30px;
-      border-radius: 15px;
-      background: linear-gradient(to right top, #667eea, #764ba2);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-      animation: fadeIn 1s ease;
-    }
-
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-
-    .container .analysis-details,
-    .container .recommendations {
-      margin-bottom: 20px;
-    }
-
-    .container .analysis-details h2,
-    .container .recommendations h3 {
-      text-align: left;
-      color: #fff;
-      margin-bottom: 10px;
-    }
-
-    .container .analysis-details p,
-    .container .recommendations li {
-      color: #f0f0f0;
-      margin-bottom: 10px;
-    }
-
-    .container .buttons {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .container button {
-      background-color: #4e54c8;
-      color: #fff;
-      font-size: 18px;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.3s ease;
-    }
-
-    .container button:hover {
-      background-color: #3f4db8;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 50px;
-      color: #ccc;
-      font-size: 16px;
-      animation: fadeInUp 1s ease;
-    }
-  </style>
+  <title>Record A Video</title>
+  <link rel="stylesheet" href="styles.css">
+  <style> </style>
 </head>
 <body>
   <div class="container">
@@ -123,10 +25,101 @@
             <video id="recording" width="160" height="120" controls></video>
             <a id="downloadButton" class="button">Download</a>
           </div>          
+
+          <div id="goToAnalysis" class="button" onclick="analyze()"> Continue to analysis </div>
     </main>
-    <footer>
-      <p>Designed by YourCompany | All rights reserved</p>
-    </footer>
   </div>
+  <script>
+    let preview = document.getElementById("preview");
+    let recording = document.getElementById("recording");
+    let startButton = document.getElementById("startButton");
+    let stopButton = document.getElementById("stopButton");
+    let downloadButton = document.getElementById("downloadButton");
+    let logElement = document.getElementById("log");
+    let recordingTimeMS = 5000;
+    
+    function log(msg) {
+        logElement.innerHTML += `${msg}\n`;
+      }
+      
+    function wait(delayInMS) {
+        return new Promise((resolve) => setTimeout(resolve, delayInMS));
+    }
+
+    function startRecording(stream, lengthInMS) {
+        let recorder = new MediaRecorder(stream);
+        let data = [];
+      
+        recorder.ondataavailable = (event) => data.push(event.data);
+        recorder.start();
+        log(`${recorder.state} for ${lengthInMS / 1000} seconds…`);
+      
+        let stopped = new Promise((resolve, reject) => {
+          recorder.onstop = resolve;
+          recorder.onerror = (event) => reject(event.name);
+        });
+      
+        let recorded = wait(lengthInMS).then(() => {
+          if (recorder.state === "recording") {
+            recorder.stop();
+          }
+        });
+      
+        return Promise.all([stopped, recorded]).then(() => data);
+      }
+
+      function stop(stream) {
+        stream.getTracks().forEach((track) => track.stop());
+      }
+      
+      startButton.addEventListener(
+  "click",
+  () => {
+    navigator.mediaDevices
+      .getUserMedia({
+        video: true,
+        audio: true,
+      })
+      .then((stream) => {
+        preview.srcObject = stream;
+        downloadButton.href = stream;
+        preview.captureStream =
+          preview.captureStream || preview.mozCaptureStream;
+        return new Promise((resolve) => (preview.onplaying = resolve));
+      })
+      .then(() => startRecording(preview.captureStream(), recordingTimeMS))
+      .then((recordedChunks) => {
+        let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
+        recording.src = URL.createObjectURL(recordedBlob);
+        downloadButton.href = recording.src;
+        downloadButton.download = "RecordedVideo.webm";
+
+        log(
+          `Successfully recorded ${recordedBlob.size} bytes of ${recordedBlob.type} media.`,
+        );
+      })
+      .catch((error) => {
+        if (error.name === "NotFoundError") {
+          log("Camera or microphone not found. Can't record.");
+        } else {
+          log(error);
+        }
+      });
+  },
+  false,
+);
+
+stopButton.addEventListener(
+  "click",
+  () => {
+    stop(preview.srcObject);
+  },
+  false,
+);
+
+    function analyze(){
+        
+    }
+  </script>
 </body>
 </html>
