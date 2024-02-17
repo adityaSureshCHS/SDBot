@@ -4,49 +4,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to Speech & Emotion Analysis</title>
-  <link rel="stylesheet" href="styles.css">
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
-      color: #333;
+      background-image: linear-gradient(to right bottom, #4e54c8, #8f94fb);
+      color: #fff;
+      overflow: hidden;
     }
 
     .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 15px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
-    header {
+    .container header {
       text-align: center;
       margin-bottom: 30px;
+      animation: fadeInUp 1s ease;
     }
 
-    h1 {
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .container h1 {
       font-size: 42px;
       color: #004d99;
       margin-bottom: 10px;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
 
-    p {
+    .container p {
       font-size: 20px;
-      color: #333;
+      color: #f0f0f0;
       margin-bottom: 20px;
     }
 
-    main {
+    .container main {
       text-align: center;
     }
 
-    .startSpeechBtn, .startDebateBtn {
-      background-color: #004d99;
+    .container button {
+      background-color: #4e54c8;
       color: #fff;
       font-size: 20px;
       padding: 15px 30px;
@@ -54,19 +65,20 @@
       border-radius: 25px;
       cursor: pointer;
       margin-top: 30px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
       transition: background-color 0.3s ease;
     }
 
-    .startSpeechBtn:hover, .startDebateBtn:hover {
-      background-color: #003366;
+    .container button:hover {
+      background-color: #3f4db8;
     }
     
     footer {
       text-align: center;
       margin-top: 50px;
-      color: #777;
+      color: #ccc;
       font-size: 16px;
+      animation: fadeInUp 1s ease;
     }
   </style>
 </head>
@@ -77,8 +89,8 @@
       <p>Get your arguments analyzed and receive personalized recommendations based on your tone and facial emotion.</p>
     </header>
     <main>
-      <button class="startSpeechBtn" onclick="window.location.href='speech_analysis.html'">Start your Speech Analysis</button>
-      <button class="startDebateBtn" onclick="window.location.href='debate_analysis.html'">Start your Debate Analysis</button>
+      <button onclick="window.location.href='speech_analysis.html'">Start your Speech Analysis</button>
+      <button onclick="window.location.href='debate_analysis.html'">Start your Debate Analysis</button>
     </main>
     <footer>
       <p>Designed by YourCompany | All rights reserved</p>
