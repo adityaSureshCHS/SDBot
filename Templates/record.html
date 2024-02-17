@@ -3,10 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-=======
   <title>Record A Video</title>
->>>>>>> 942a6b7a444ca69bac7eff0621f2c421245944af
   <link rel="stylesheet" href="styles.css">
   <style> </style>
 </head>
@@ -31,10 +28,9 @@
             <a id="downloadButton" class="button">Download</a>
           </div>          
 
-          <a href="{{url_for('analyze', video=recording.src)}}" id="goToAnalysis" class="button" onclick="analyze()"> Continue to analysis </a>
->>>>>>> 942a6b7a444ca69bac7eff0621f2c421245944af
+          
     </main>
-    <button id="goToAnalysis" class="button" onclick="analyze()">Continue to analysis</button>
+    <a href="{{ url_for('analyze', video=recording.src) }}" id="goToAnalysis" class="button" onclick="analyze()"> Continue to analysis </a>
     <footer>
       <p>Designed by YourCompany | All rights reserved</p>
     </footer>

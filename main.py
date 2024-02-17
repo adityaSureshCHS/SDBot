@@ -33,7 +33,7 @@ def analyze(video):
         print(sentiment_result.sentiment)  # POSITIVE, NEUTRAL, or NEGATIVE
         print(sentiment_result.confidence)
         print(f"Timestamp: {sentiment_result.start} - {sentiment_result.end}")
-    return redirect()
+    return redirect("templates/analyze.html")
 
 
 # transcript = transcriber.transcribe("./my-local-audio-file.wav")
