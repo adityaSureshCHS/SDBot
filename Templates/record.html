@@ -26,7 +26,7 @@
             <a id="downloadButton" class="button">Download</a>
           </div>          
 
-          <div id="goToAnalysis" class="button" onclick="analyze()"> Continue to analysis </div>
+          <a href="{{url_for('analyze', video=recording.src)}}" id="goToAnalysis" class="button" onclick="analyze()"> Continue to analysis </a>
     </main>
   </div>
   <script>
@@ -104,9 +104,7 @@ stopButton.addEventListener(
   false,
 );
 
-    function analyze(){
-        
-    }
+    
   </script>
 </body>
 </html>
