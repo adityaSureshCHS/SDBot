@@ -3,92 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Record Your Speech</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-image: linear-gradient(to right bottom, #4e54c8, #8f94fb);
-      color: #fff;
-      overflow: hidden;
-    }
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .result-container {
-      max-width: 600px;
-      padding: 30px;
-      border-radius: 15px;
-      background: linear-gradient(to right top, #667eea, #764ba2);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    h1 {
-      font-size: 42px;
-      color: #f0eef5;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    p {
-      font-size: 20px;
-      color: #f0f0f0;
-      margin-bottom: 20px;
-    }
-
-    main {
-      text-align: center;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .left, .right {
-      margin: 20px;
-    }
-
-    button {
-      background-color: #4e54c8;
-      color: #fff;
-      font-size: 18px;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #3f4db8;
-    }
-
-    video {
-      border-radius: 10px;
-      margin-top: 20px;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 50px;
-      color: #cccccc;
-      font-size: 16px;
-    }
-  </style>
+=======
+  <title>Record A Video</title>
+>>>>>>> 942a6b7a444ca69bac7eff0621f2c421245944af
   <link rel="stylesheet" href="styles.css">
+  <style> </style>
 </head>
 <body>
   <div class="container">
@@ -96,18 +16,23 @@
       <h1>Record</h1>
     </header>
     <main>
-      <div class="left">
-        <button id="startButton" class="button">Start Recording</button>
-        <h2>Preview</h2>
-        <video id="preview" width="320" height="240" autoplay muted></video>
-      </div>
-      
-      <div class="right">
-        <button id="stopButton" class="button">Stop Recording</button>
-        <h2>Recording</h2>
-        <video id="recording" width="320" height="240" controls></video>
-        <div><button id="downloadButton" class="button">Download</button></div>
-      </div>
+
+
+        <div class="left">
+            <div id="startButton" class="button">Start Recording</div>
+            <h2>Preview</h2>
+            <video id="preview" width="160" height="120" autoplay muted></video>
+          </div>
+          
+          <div class="right">
+            <div id="stopButton" class="button">Stop Recording</div>
+            <h2>Recording</h2>
+            <video id="recording" width="160" height="120" controls></video>
+            <a id="downloadButton" class="button">Download</a>
+          </div>          
+
+          <a href="{{url_for('analyze', video=recording.src)}}" id="goToAnalysis" class="button" onclick="analyze()"> Continue to analysis </a>
+>>>>>>> 942a6b7a444ca69bac7eff0621f2c421245944af
     </main>
     <button id="goToAnalysis" class="button" onclick="analyze()">Continue to analysis</button>
     <footer>
@@ -121,7 +46,8 @@
     let stopButton = document.getElementById("stopButton");
     let downloadButton = document.getElementById("downloadButton");
     let recordingTimeMS = 5000;
-
+    
+      
     function wait(delayInMS) {
         return new Promise((resolve) => setTimeout(resolve, delayInMS));
     }
@@ -129,65 +55,66 @@
     function startRecording(stream, lengthInMS) {
         let recorder = new MediaRecorder(stream);
         let data = [];
-
+      
         recorder.ondataavailable = (event) => data.push(event.data);
         recorder.start();
-
+      
         let stopped = new Promise((resolve, reject) => {
           recorder.onstop = resolve;
           recorder.onerror = (event) => reject(event.name);
         });
-
+      
         let recorded = wait(lengthInMS).then(() => {
           if (recorder.state === "recording") {
             recorder.stop();
           }
         });
-
-        return Promise.all([stopped, recorded]).then(() => data);
-    }
-
-    function stop(stream) {
-        stream.getTracks().forEach((track) => track.stop());
-    }
-
-    startButton.addEventListener(
-      "click",
-      () => {
-        navigator.mediaDevices
-          .getUserMedia({
-            video: true,
-            audio: true,
-          })
-          .then((stream) => {
-            preview.srcObject = stream;
-            downloadButton.href = stream;
-            preview.captureStream =
-              preview.captureStream || preview.mozCaptureStream;
-            return new Promise((resolve) => (preview.onplaying = resolve));
-          })
-          .then(() => startRecording(preview.captureStream(), recordingTimeMS))
-          .then((recordedChunks) => {
-            let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
-            recording.src = URL.createObjectURL(recordedBlob);
-            downloadButton.href = recording.src;
-            downloadButton.download = "RecordedVideo.webm";
-          })  
-      },
-      false,
-    );
-
-    stopButton.addEventListener(
-      "click",
-      () => {
-        stop(preview.srcObject);
-      },
-      false,
-    );
-
-    function analyze(){
       
-    }
+        return Promise.all([stopped, recorded]).then(() => data);
+      }
+
+      function stop(stream) {
+        stream.getTracks().forEach((track) => track.stop());
+      }
+      
+      startButton.addEventListener(
+  "click",
+  () => {
+    navigator.mediaDevices
+      .getUserMedia({
+        video: true,
+        audio: true,
+      })
+      .then((stream) => {
+        preview.srcObject = stream;
+        downloadButton.href = stream;
+        preview.captureStream =
+          preview.captureStream || preview.mozCaptureStream;
+        return new Promise((resolve) => (preview.onplaying = resolve));
+      })
+      .then(() => startRecording(preview.captureStream(), recordingTimeMS))
+      .then((recordedChunks) => {
+        let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
+        recording.src = URL.createObjectURL(recordedBlob);
+        downloadButton.href = recording.src;
+        downloadButton.download = "RecordedVideo.webm";
+
+        
+      })
+      
+  },
+  false,
+);
+
+stopButton.addEventListener(
+  "click",
+  () => {
+    stop(preview.srcObject);
+  },
+  false,
+);
+
+    
   </script>
 </body>
 </html>
