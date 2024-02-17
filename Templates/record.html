@@ -4,8 +4,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Record A Video</title>
-  <link rel="stylesheet" href="styles.css">
-  <style> </style>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: linear-gradient(to right bottom, #4e54c8, #8f94fb);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    main {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .left, .right {
+      text-align: center;
+    }
+
+    .button {
+      background-color: #4e54c8;
+      color: #fff;
+      font-size: 18px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #3f4db8;
+    }
+
+    video {
+      border-radius: 15px;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      text-align: center;
+      color: #fff;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -13,24 +79,21 @@
       <h1>Record</h1>
     </header>
     <main>
-
-
-        <div class="left">
-            <div id="startButton" class="button">Start Recording</div>
-            <h2>Preview</h2>
-            <video id="preview" width="160" height="120" autoplay muted></video>
-          </div>
-          
-          <div class="right">
-            <div id="stopButton" class="button">Stop Recording</div>
-            <h2>Recording</h2>
-            <video id="recording" width="160" height="120" controls></video>
-            <a id="downloadButton" class="button">Download</a>
-          </div>          
-
-          
+      <div class="left">
+        <button id="startButton" class="button">Start Recording</button>
+        <h2>Preview</h2>
+        <video id="preview" width="320" height="240" autoplay muted></video>
+      </div>
+      
+      <div class="right">
+        <button id="stopButton" class="button">Stop Recording</button>
+        <h2>Recording</h2>
+        <div id="recordingContainer">
+          <video id="recording" width="320" height="240" controls></video>
+        </div>
+        <a id="downloadButton" class="button">Download</a>
+      </div>
     </main>
-    <a href="{{ url_for('analyze', video=recording.src) }}" id="goToAnalysis" class="button" onclick="analyze()"> Continue to analysis </a>
     <footer>
       <p>Designed by YourCompany | All rights reserved</p>
     </footer>
@@ -42,8 +105,7 @@
     let stopButton = document.getElementById("stopButton");
     let downloadButton = document.getElementById("downloadButton");
     let recordingTimeMS = 5000;
-    
-      
+
     function wait(delayInMS) {
         return new Promise((resolve) => setTimeout(resolve, delayInMS));
     }
@@ -94,10 +156,7 @@
         recording.src = URL.createObjectURL(recordedBlob);
         downloadButton.href = recording.src;
         downloadButton.download = "RecordedVideo.webm";
-
-        
-      })
-      
+      })  
   },
   false,
 );
@@ -109,8 +168,6 @@ stopButton.addEventListener(
   },
   false,
 );
-
-    
   </script>
 </body>
 </html>
