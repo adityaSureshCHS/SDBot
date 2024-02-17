@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tips for Debate Recording</title>
+  <title>Argument Analysis</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -20,6 +20,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      position: relative;
     }
 
     .container header {
@@ -96,9 +97,18 @@
       background-color: #3f4db8;
     }
 
-  
-    .record-btn {
-      transition: background-color 0.3s ease;
+    .text-container {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .text-container textarea {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      box-sizing: border-box;
     }
 
     footer {
@@ -120,26 +130,28 @@
   <div class="container">
     <button class="return-home-btn button" onclick="window.location.href='main.html'">Return to Home Page</button>
     <header>
-      <h1>Debate Analysis Guidelines</h1>
+      <h1>Argument Analysis Guidelines</h1>
     </header>
     <div class="result-container">
       <div class="analysis-details">
-        <h2>Guidelines for Debate Recording</h2>
+        <h2>Upload the text for your argument analysis here. Here are some tips: </h2>
         <p><strong>Clarity:</strong> Your argument should be clear and easy to understand.</p>
         <p><strong>Pace:</strong> Your argument pace should be moderate and engaging.</p>
         <p><strong>Tone:</strong> Your argument should be confident and persuasive.</p>
-       
       </div>
       <div class="recommendations">
-        <h3>How to start a Debate Recording</h3>
+        <h3>How to upload an argument</h3>
         <ul>
-          <li>Press "Record new Debate" below to start a new debate recording.</li>
-          <li>Practice maintaining a consistent pace throughout the speech.</li>
+          <li>Type in or copy paste your essay into the text box below.</li>
           <li>Your results, feedback, and recommendations will be displayed after you finish.</li>
         </ul>
       </div>
       
-      <button onclick="window.location.href='record.html'">Record New Speech</button>
+      <div class="text-container">
+        <textarea rows="10" placeholder="Enter your argument essay here..."></textarea>
+      </div>
+      
+      <button class="record-btn" onclick="window.location.href='analysisdisplay.html'">Continue to your analysis and recommendations...</button>
     </div>
     <footer>
       
