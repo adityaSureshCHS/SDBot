@@ -96,7 +96,7 @@
       background-color: #3f4db8;
     }
 
-    /* Added transition for the record button */
+  
     .record-btn {
       transition: background-color 0.3s ease;
     }
@@ -108,10 +108,17 @@
       font-size: 16px;
       animation: fadeInUp 1s ease;
     }
+
+    .return-home-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
+    <button class="return-home-btn button" onclick="window.location.href='main.html'">Return to Home Page</button>
     <header>
       <h1>Debate Analysis Guidelines</h1>
     </header>

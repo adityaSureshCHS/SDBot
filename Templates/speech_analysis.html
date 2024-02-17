@@ -20,6 +20,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      position: relative;
     }
 
     .container header {
@@ -103,10 +104,18 @@
       font-size: 16px;
       animation: fadeInUp 1s ease;
     }
+    
+    
+    .return-home-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
+    <button class="return-home-btn button" onclick="window.location.href='main.html'">Return to Home Page</button>
     <header>
       <h1>Speech Recording Guidelines</h1>
     </header>
@@ -127,7 +136,6 @@
         </ul>
       </div>
       <div class="buttons">
-        <button class="return-home-btn" onclick="window.location.href='main.html'">Return to Home Page</button>
         <button class="record-btn" onclick="window.location.href='record.html'">Record New Speech</button>
       </div>
     </div>
