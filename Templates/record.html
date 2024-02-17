@@ -10,9 +10,31 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background-image: linear-gradient(to right bottom, #4e54c8, #8f94fb);
       color: #fff;
       overflow: hidden;
+      background-image: linear-gradient(to right bottom, #4e54c8, #8f94fb);
+      animation: fadeIn 1s ease, gradientTransition 4s linear infinite;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes gradientTransition {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
 
     .container {
