@@ -5,21 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to Speech & Emotion Analysis</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
   <div class="container">
     <header>
+      <img src="logo.png" alt="Logo" class="logo">
       <h1>Welcome to Speech & Emotion Analysis</h1>
       <p>Analyze your speech and receive personalized recommendations based on your tone and facial emotion.</p>
+      <div class="icon-container">
+        <i class="fas fa-microphone-alt"></i>
+        <i class="far fa-smile"></i>
+      </div>
     </header>
     <main>
-      <button id="startBtn">Start Analysis</button>
-      <div id="result" class="result-container"></div>
+      <section class="features">
+        <h2>Key Features</h2>
+        <ul>
+          <li><i class="fas fa-check"></i> Real-time speech recognition</li>
+          <li><i class="fas fa-check"></i> Facial emotion recognition</li>
+          <li><i class="fas fa-check"></i> Sentiment analysis</li>
+          <li><i class="fas fa-check"></i> Personalized recommendations</li>
+        </ul>
+      </section>
+      <section class="about">
+        <h2>About</h2>
+        <p>Our program uses advanced machine learning algorithms to analyze speech and facial expressions. Whether you're looking to improve your communication skills or better understand your emotions, our tool provides valuable insights to help you achieve your goals.</p>
+      </section>
     </main>
     <footer>
       <p>Designed by YourCompany | All rights reserved</p>
     </footer>
   </div>
-  <script src="script.js"></script>
 </body>
 </html>
