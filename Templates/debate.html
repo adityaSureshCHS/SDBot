@@ -4,7 +4,77 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to Speech & Emotion Analysis</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: linear-gradient(to right bottom, #4e54c8, #8f94fb);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .result-container {
+      max-width: 600px;
+      padding: 30px;
+      border-radius: 15px;
+      background: linear-gradient(to right top, #667eea, #764ba2);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 42px;
+      color: #fafdff;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    p {
+      font-size: 20px;
+      color: #f0f0f0;
+      margin-bottom: 20px;
+    }
+
+    main {
+      text-align: center;
+    }
+
+    button {
+      background-color: #4e54c8;
+      color: #fff;
+      font-size: 18px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #3f4db8;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: #ccc;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
