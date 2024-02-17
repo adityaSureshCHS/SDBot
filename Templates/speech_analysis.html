@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Speech & Emotion Analysis</title>
+  <title>Speech Analysis Results</title>
   <link rel="stylesheet" href="styles.css">
   <style>
     body {
@@ -35,16 +35,6 @@
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
 
-    p {
-      font-size: 20px;
-      color: #333;
-      margin-bottom: 20px;
-    }
-
-    main {
-      text-align: center;
-    }
-
     .result-container {
       border: 2px solid #004d99;
       padding: 30px;
@@ -61,11 +51,37 @@
     .analysis-details p {
       font-size: 18px;
       color: #555;
+      margin-bottom: 10px;
     }
 
     .analysis-details h2 {
       font-size: 24px;
       color: #004d99;
+      margin-bottom: 20px;
+    }
+
+    .recommendations {
+      background-color: #f0f0f0;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+    }
+    
+    .recommendations h3 {
+      font-size: 22px;
+      color: #004d99;
+      margin-bottom: 10px;
+    }
+
+    .recommendations ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .recommendations li {
+      font-size: 18px;
+      color: #333;
       margin-bottom: 10px;
     }
 
@@ -80,24 +96,28 @@
 <body>
   <div class="container">
     <header>
-      <h1>Welcome to Speech & Emotion Analysis</h1>
-      <p>Get your arguments analyzed and receive personalized recommendations based on your tone and facial emotion.</p>
+      <h1>Speech Analysis Results</h1>
     </header>
-    <main>
-      <button id="startSpeechBtn">Start Analyzing Your Speech</button>
-      <button id="startDebateBtn">Start Analyzing Your Debate</button>
-    </main>
+    <div class="result-container">
+      <div class="analysis-details">
+        <h2>Analysis Details</h2>
+        <p><strong>Clarity:</strong> Your speech was clear and easy to understand.</p>
+        <p><strong>Pace:</strong> Your speaking pace was moderate and engaging.</p>
+        <p><strong>Tone:</strong> Your tone was confident and persuasive.</p>
+        <p><strong>Emotion:</strong> Your facial expression showed confidence and enthusiasm.</p>
+      </div>
+      <div class="recommendations">
+        <h3>Recommendations</h3>
+        <ul>
+          <li>Work on varying your tone to keep the audience engaged.</li>
+          <li>Practice maintaining a consistent pace throughout the speech.</li>
+          <li>Use more expressive facial expressions to convey emotions effectively.</li>
+        </ul>
+      </div>
+    </div>
     <footer>
       <p>Designed by YourCompany | All rights reserved</p>
     </footer>
   </div>
-  <script>
-    document.getElementById("startSpeechBtn").addEventListener("click", function() {
-      window.location.href = "speech_analysis.html"; // Redirect to the speech analysis page
-    });
-    //hi
-  </script>
 </body>
 </html>
-
-
