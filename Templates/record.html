@@ -35,7 +35,6 @@
     let startButton = document.getElementById("startButton");
     let stopButton = document.getElementById("stopButton");
     let downloadButton = document.getElementById("downloadButton");
-    let logElement = document.getElementById("log");
     let recordingTimeMS = 5000;
     
       
@@ -49,7 +48,6 @@
       
         recorder.ondataavailable = (event) => data.push(event.data);
         recorder.start();
-        log(`${recorder.state} for ${lengthInMS / 1000} seconds…`);
       
         let stopped = new Promise((resolve, reject) => {
           recorder.onstop = resolve;
@@ -91,17 +89,9 @@
         downloadButton.href = recording.src;
         downloadButton.download = "RecordedVideo.webm";
 
-        log(
-          `Successfully recorded ${recordedBlob.size} bytes of ${recordedBlob.type} media.`,
-        );
+        
       })
-      .catch((error) => {
-        if (error.name === "NotFoundError") {
-          log("Camera or microphone not found. Can't record.");
-        } else {
-          log(error);
-        }
-      });
+      
   },
   false,
 );
