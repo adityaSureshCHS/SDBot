@@ -65,6 +65,21 @@
       margin-bottom: 20px;
     }
 
+    .container a {
+      background-color: #4e54c8;
+      color: #fff; /* Changed text color to white */
+      font-size: 18px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      margin: 10px; /* Increased margin for better spacing */
+    }
+
     .left, .right {
       text-align: center;
     }
@@ -95,12 +110,19 @@
       color: #fff;
       font-size: 14px;
     }
+
+    .return-home-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
   </style>
 </head>
 
 <body>
-  <a href="{{home}}" class = "return-home-btn"> Return to Home Page </a>
+  
   <div class="container">
+    <a href="{{home}}" class = "return-home-btn"> Return to Home Page </a>
     <header>
       <h1>Record</h1>
     </header>
