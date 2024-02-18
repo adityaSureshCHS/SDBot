@@ -59,7 +59,7 @@
     main {
       display: flex;
       justify-content: space-around;
-      align-items: center;
+      align-items: flex-end;
       width: 100%;
       margin-bottom: 20px;
     }
@@ -123,6 +123,15 @@
       margin-bottom: 10px;
       text-align: center;
     }
+
+    .box {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 15px;
+      background-image: linear-gradient(to left bottom, #764ba2, #667eea); /* Mirrored gradient background for the inner box */
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
   </style>
 </head>
 
@@ -134,19 +143,26 @@
       <h1>Record</h1>
     </header>
     <main id="main">
+     
       <div class="left">
+        <div class="box">
         <input type="number" id="videoLength" placeholder="Enter video length (in seconds)" min="1">
         <button id="startButton" class="button" disabled>Start Recording</button> <!-- Disabled by default -->
         <h2>Preview</h2>
         <video id="preview" width="320" height="240" autoplay muted></video>
       </div>
+      </div>
       <div class="right">
-        <button id="stopButton" class="button">Stop Recording</button>
-        <h2>Recording</h2>
+        <div class="box">
         <div id="recordingContainer">
           <video id="recording" width="320" height="240" controls></video>
         </div>
-        <a id="downloadButton" class="button" onclick='window.open('{{form_action_url1}}')'>Download</a>
+
+        <h2>Recording</h2>
+        <div>
+          <a id="downloadButton" class="button">Download</a>
+        </div>
+      </div>
       </div>
     </main>
     <footer></footer>
