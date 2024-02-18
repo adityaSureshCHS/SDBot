@@ -59,7 +59,7 @@
     main {
       display: flex;
       justify-content: space-around;
-      align-items: center;
+      align-items: flex-end;
       width: 100%;
       margin-bottom: 20px;
     }
@@ -141,12 +141,13 @@
         <video id="preview" width="320" height="240" autoplay muted></video>
       </div>
       <div class="right">
-        <button id="stopButton" class="button">Stop Recording</button>
-        <h2>Recording</h2>
         <div id="recordingContainer">
           <video id="recording" width="320" height="240" controls></video>
         </div>
-        <a id="downloadButton" class="button">Download</a>
+        <h2>Recording</h2>
+        <div>
+          <a id="downloadButton" class="button">Download</a>
+        </div>
       </div>
     </main>
     <footer></footer>
