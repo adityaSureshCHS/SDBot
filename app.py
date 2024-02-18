@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, url_for, request
-import requests, json, time
+import requests, json, time, os
 import pip._vendor.requests
 # `pip3 install assemblyai` (macOS)
 # `pip install assemblyai` (Windows)
@@ -37,20 +37,47 @@ def speech_analysis():
 def debate_analysis():
     return render_template("debate_analysis.html", form_action_url2=url_for('analysis_display'), home=url_for('main'))
 
-@app.route('/analysis_display')
+@app.route('/analysis_display', methods=["GET", "POST"])
 def analysis_display():
-    print(request.args.get('data'))
-    
-    with open(request.args.get('data'), "rb") as f:
-        response = requests.post(base_url + "/upload", headers=headers, data=f)
-    upload_url = response.json()["upload_url"]
-    video = upload_url
-    config = aai.TranscriptionConfig(speaker_labels=True, sentiment_analysis=True)
-    transcriber = aai.Transcriber()
-    transcript = transcriber.transcribe(
-        video,
-        config=config
-    )
+    if request.method == "POST":
+        data = request.form['fullPath']
+        print(data)
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        os.chdir(dir_path)
+        rel = os.path.relpath(data)
+        print(rel)
+        with open(rel, "rb") as f:
+            response = requests.post(base_url + "/upload", headers=headers, data=f)
+        upload_url = response.json()["upload_url"]
+        video = upload_url
+        config = aai.TranscriptionConfig(speaker_labels=True, sentiment_analysis=True)
+        transcriber = aai.Transcriber()
+        transcript = transcriber.transcribe(
+            video,
+            config
+        )
+        senText = []
+        senSen = []
+        senCon = []
+        senTime = []
+        print("The audio of the video that was recorded: " + transcript.text)
+        count = 1
+        for sentiment_result in transcript.sentiment_analysis:
+            print("Major excerpt number ")
+            print(count)
+            print(sentiment_result.text)
+            print("Sentiment was: " + sentiment_result.sentiment)  # POSITIVE, NEUTRAL, or NEGATIVE
+            print("Confidence in verdict is: " + sentiment_result.confidence)
+            print(f"Timestamp pof sentiment: {sentiment_result.start} - {sentiment_result.end}")
+        
+        data = {
+            "text": transcript.text,
+            "indText": senText,
+            "indSen": senSen,
+            "indCon": senCon,
+            "indTime": senTime
+        }
+        return data
     '''
     for utterance in transcript.utterances:
         print(f"Speaker {utterance.speaker}: {utterance.text}")
@@ -61,7 +88,10 @@ def analysis_display():
         print(sentiment_result.confidence)
         print(f"Timestamp: {sentiment_result.start} - {sentiment_result.end}")
     '''
-    return render_template("analysisdisplay.html")
+    return ""
+
+
+
 
 if __name__== '__app__':
     app.debug = True

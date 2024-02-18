@@ -84,7 +84,7 @@
       <p>If you haven't already, go to the previous page and click the Download button to get the recording, then copy the full file path here w/out beginning and ending quotation marks</p>
     </header>
     <main>
-      <form method="POST" enctype="multipart/form-data">
+      <form method="POST" enctype="text/plain">
         <input id="path" name="fullPath" type="text"  accept="video/webm">
         <button name="fileSubmit" type="submit">Upload</button>
       </form>
@@ -96,20 +96,28 @@
   <script>
     const form = document.querySelector('form');
     form.addEventListener('submit', handleSubmit);
+    
 
     function handleSubmit(event) {
       event.preventDefault();
-      var formData = new FormData(form);
-      var val;
-      for (const value of formData.values()){
-        val = value;
-        console.log(val);
-        window.open(`{{ form_action_url1 }}` + "?data=" + value);
-      }
-      
-      
-      
+      console.log(`{{form_action_url1}}`);
+      $.ajax({
+        url:"/analysis_display",
+        data:{
+          fullPath: document.getElementById("path").value,
+        },
+        type:"POST",
+        dataType:"text",
+        success: function(data){
+
+        }
+      })
     }
+      
+
+      
+      
+    
 
 
   </script>
