@@ -1,11 +1,15 @@
 from flask import Flask, redirect, render_template, url_for, request
+import requests, json, time
 import pip._vendor.requests
 # `pip3 install assemblyai` (macOS)
 # `pip install assemblyai` (Windows)
 import assemblyai as aai
 aai.settings.api_key = "6353fb2f46144cfc9c2bc46924ba3689"
 transcriber = aai.Transcriber()
-
+base_url = "https://api.assemblyai.com/v2"
+headers = {
+    "authorization": "6353fb2f46144cfc9c2bc46924ba3689"
+}
 
 
 app = Flask(__name__)
@@ -35,7 +39,12 @@ def debate_analysis():
 
 @app.route('/analysis_display')
 def analysis_display():
-    video = request.args.get('data')
+    print(request.args.get('data'))
+    
+    with open(request.args.get('data'), "rb") as f:
+        response = requests.post(base_url + "/upload", headers=headers, data=f)
+    upload_url = response.json()["upload_url"]
+    video = upload_url
     config = aai.TranscriptionConfig(speaker_labels=True, sentiment_analysis=True)
     transcriber = aai.Transcriber()
     transcript = transcriber.transcribe(
@@ -44,11 +53,13 @@ def analysis_display():
     )
     for utterance in transcript.utterances:
         print(f"Speaker {utterance.speaker}: {utterance.text}")
+    '''
     for sentiment_result in transcript.sentiment_analysis:
         print(sentiment_result.text)
         print(sentiment_result.sentiment)  # POSITIVE, NEUTRAL, or NEGATIVE
         print(sentiment_result.confidence)
         print(f"Timestamp: {sentiment_result.start} - {sentiment_result.end}")
+    '''
     return render_template("analysisdisplay.html")
 
 if __name__== '__app__':

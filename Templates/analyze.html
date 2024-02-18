@@ -80,13 +80,13 @@
 <body>
   <div class="container">
     <header>
-      <h1>Upload your video</h1>
-      <p>If you haven't already, go to the previous page and click the Download button to get the recording, then upload here</p>
+      <h1>Enter video file path</h1>
+      <p>If you haven't already, go to the previous page and click the Download button to get the recording, then copy the full file path here w/out beginning and ending quotation marks</p>
     </header>
     <main>
       <form method="POST" enctype="multipart/form-data">
-        <input name="file" type="file"  accept="video/webm">
-        <button type="submit">Upload</button>
+        <input id="path" name="fullPath" type="text"  accept="video/webm">
+        <button name="fileSubmit" type="submit">Upload</button>
       </form>
     </main>
     <footer>
@@ -99,11 +99,16 @@
 
     function handleSubmit(event) {
       event.preventDefault();
-      const form = event.currentTarget;
-      const url = new URL(form.action);
-      const formData = new FormData(form);
-      console.log(formData);
-      window.open(`{{ form_action_url1 }}` + "?data=" + formData[entries][0]);
+      var formData = new FormData(form);
+      var val;
+      for (const value of formData.values()){
+        val = value;
+        console.log(val);
+        window.open(`{{ form_action_url1 }}` + "?data=" + value);
+      }
+      
+      
+      
     }
 
 
