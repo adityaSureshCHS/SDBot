@@ -93,6 +93,18 @@
       transition: background-color 0.3s ease;
     }
 
+    .container a {
+      background-color: #4e54c8;
+      color: #fff;
+      font-size: 18px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+    }
+
     .container button:hover {
       background-color: #3f4db8;
     }
@@ -115,7 +127,7 @@
 </head>
 <body>
   <div class="container">
-    <a href="{{home}}"> Return to Home Page </a>
+    <a href="{{home}}" class = "return-home-btn"> Return to Home Page </a>
     <header>
       <h1>Speech Recording Guidelines</h1>
     </header>
@@ -135,13 +147,9 @@
           <li>Your results, feedback, and recommendations will be displayed after you finish.</li>
         </ul>
       </div>
-      <div class="buttons">
-        <a href = "{{form_action_url1}}"> Record A New Speech </a>
-      </div>
-    </div>
-    <footer>
       
-    </footer>
-  </div>
+        <a href = "{{form_action_url1}}"  > Record A New Speech </a>
+    
+          
 </body>
 </html>
