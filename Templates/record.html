@@ -187,6 +187,14 @@
         downloadButton.href = recording.src;
         downloadButton.download = "RecordedVideo.webm";
         console.log(recording.src);
+        var reader = new FileReader;
+        reader.readAsDataURL(recording.src);
+        console.log(reader.result);
+        /*$.ajax({
+          type="POST",
+          url:
+        })*/
+
         
       })  
   },
