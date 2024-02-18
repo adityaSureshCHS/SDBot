@@ -51,9 +51,10 @@ def analysis_display():
         video,
         config=config
     )
+    '''
     for utterance in transcript.utterances:
         print(f"Speaker {utterance.speaker}: {utterance.text}")
-    '''
+    
     for sentiment_result in transcript.sentiment_analysis:
         print(sentiment_result.text)
         print(sentiment_result.sentiment)  # POSITIVE, NEUTRAL, or NEGATIVE
