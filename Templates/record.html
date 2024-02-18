@@ -186,6 +186,7 @@
         recording.src = URL.createObjectURL(recordedBlob);
         downloadButton.href = recording.src;
         downloadButton.download = "RecordedVideo.webm";
+        console.log(recording.src);
         
       })  
   },
