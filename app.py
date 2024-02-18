@@ -16,13 +16,14 @@ def main():
 
 @app.route("/record")
 def record():
-    return render_template("record.html", form_action_url1 = url_for("analyze"), home=url_for("main"))
+    return render_template("record.html", form_action_url1 = url_for('analyze'), home=url_for('main'))
 
 
 
-@app.route("/analyze", methods=['POST'])
+@app.route("/analyze")
 def analyze():
-    config = aai.TranscriptionConfig(speaker_labels=True, sentiment_analysis=True)
+    return render_template("analyze.html")
+'''config = aai.TranscriptionConfig(speaker_labels=True, sentiment_analysis=True)
 
     transcriber = aai.Transcriber()
     transcript = transcriber.transcribe(
@@ -35,9 +36,7 @@ def analyze():
         print(sentiment_result.text)
         print(sentiment_result.sentiment)  # POSITIVE, NEUTRAL, or NEGATIVE
         print(sentiment_result.confidence)
-        print(f"Timestamp: {sentiment_result.start} - {sentiment_result.end}")
-    return render_template("analyze.html")
-
+        print(f"Timestamp: {sentiment_result.start} - {sentiment_result.end}")'''
 @app.route('/speechanalysis')
 def speech_analysis():
     return render_template("speech_analysis.html", form_action_url1=url_for('record'), home=url_for('main'))
