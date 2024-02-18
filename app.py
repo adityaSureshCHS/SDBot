@@ -67,7 +67,8 @@ def analysis_display():
             print(count)
             print(sentiment_result.text)
             print("Sentiment was: " + sentiment_result.sentiment)  # POSITIVE, NEUTRAL, or NEGATIVE
-            print("Confidence in verdict is: " + sentiment_result.confidence)
+            print("Confidence in verdict is: " )
+            print(sentiment_result.confidence)
             print(f"Timestamp pof sentiment: {sentiment_result.start} - {sentiment_result.end}")
         
         data = {
