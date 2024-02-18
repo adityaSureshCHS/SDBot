@@ -112,7 +112,7 @@
       </header>
       <main>
         <a id="startSpeechBtn" href="{{form_action_url1}}">Start Analyzing Your Speech</a>
-        <a id="startDebateBtn" href="#">Start Analyzing Your Debate</a>
+        <a id="startDebateBtn" href="{{form_action_url2}}">Start Analyzing Your Debate</a>
       </main>
       <footer>
         <p>Designed by YourCompany | All rights reserved</p>
@@ -122,6 +122,10 @@
   <script>
     document.getElementById("startSpeechBtn").addEventListener("click", function() {
       window.location.href = "speech_analysis.html"; // Redirect to the speech analysis page
+    });
+
+    document.getElementById("startDebateBtn").addEventListener("click", function() {
+      window.location.href = "debate_analysis.html"; // Redirect to the speech analysis page
     });
   </script>
 </body>

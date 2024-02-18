@@ -12,11 +12,13 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    return render_template("main.html", form_action_url1=url_for('speech_analysis'))
+    return render_template("main.html", form_action_url1=url_for('speech_analysis'), form_action_url2=url_for('debate_analysis'))
 
 @app.route("/record")
 def record():
     return render_template("record.html", form_action_url1 = url_for("analyze"), home=url_for("main"))
+
+
 
 @app.route("/analyze", methods=['POST'])
 def analyze():
@@ -41,6 +43,13 @@ def speech_analysis():
     return render_template("speech_analysis.html", form_action_url1=url_for('record'), home=url_for('main'))
 # transcript = transcriber.transcribe("./my-local-audio-file.wav")
 
+@app.route('/debateanalysis')
+def debate_analysis():
+    return render_template("debate_analysis.html", form_action_url2=url_for('analysis_display'), home=url_for('main'))
+
+@app.route('/display')
+def analysis_display():
+    return -1
 
 if __name__== '__app__':
     app.run()
