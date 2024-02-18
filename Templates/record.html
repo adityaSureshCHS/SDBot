@@ -254,8 +254,7 @@
         "click",
         () => {
           let videoLength = parseInt(document.getElementById("videoLength").value) * 1000; // Convert seconds to milliseconds
-          navigator.mediaDevices
-            .getUserMedia({
+          navigator.mediaDevices.getUserMedia({
               video: true,
               audio: true,
             })

@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, url_for
+from flask import Flask, redirect, render_template, url_for, request
 import pip._vendor.requests
 # `pip3 install assemblyai` (macOS)
 # `pip install assemblyai` (Windows)
@@ -16,15 +16,27 @@ def main():
 
 @app.route("/record")
 def record():
-    return render_template("record.html", form_action_url1 = url_for('analyze'), home=url_for('main'))
+    return render_template("record.html", form_action_url1=url_for('analyze'), home=url_for('main'))
 
 
 
 @app.route("/analyze")
 def analyze():
-    return render_template("analyze.html")
-'''config = aai.TranscriptionConfig(speaker_labels=True, sentiment_analysis=True)
+    return render_template("analyze.html", form_action_url1=url_for('analysis_display'))
 
+@app.route('/speechanalysis')
+def speech_analysis():
+    return render_template("speech_analysis.html", form_action_url1=url_for('record'), home=url_for('main'))
+# transcript = transcriber.transcribe("./my-local-audio-file.wav")
+
+@app.route('/debateanalysis')
+def debate_analysis():
+    return render_template("debate_analysis.html", form_action_url2=url_for('analysis_display'), home=url_for('main'))
+
+@app.route('/analysis_display')
+def analysis_display():
+    video = request.args.get('data')
+    config = aai.TranscriptionConfig(speaker_labels=True, sentiment_analysis=True)
     transcriber = aai.Transcriber()
     transcript = transcriber.transcribe(
         video,
@@ -36,19 +48,8 @@ def analyze():
         print(sentiment_result.text)
         print(sentiment_result.sentiment)  # POSITIVE, NEUTRAL, or NEGATIVE
         print(sentiment_result.confidence)
-        print(f"Timestamp: {sentiment_result.start} - {sentiment_result.end}")'''
-@app.route('/speechanalysis')
-def speech_analysis():
-    return render_template("speech_analysis.html", form_action_url1=url_for('record'), home=url_for('main'))
-# transcript = transcriber.transcribe("./my-local-audio-file.wav")
-
-@app.route('/debateanalysis')
-def debate_analysis():
-    return render_template("debate_analysis.html", form_action_url2=url_for('analysis_display'), home=url_for('main'))
-
-@app.route('/display')
-def analysis_display():
-    return -1
+        print(f"Timestamp: {sentiment_result.start} - {sentiment_result.end}")
+    return render_template("analysisdisplay.html")
 
 if __name__== '__app__':
     app.run()

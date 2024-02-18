@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Speech & Emotion Analysis</title>
-  <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+  <title>Upload File</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -85,22 +84,29 @@
       <p>If you haven't already, go to the previous page and click the Download button to get the recording, then upload here</p>
     </header>
     <main>
-      <div class="dz-preview dz-file-preview">
-        <div class="dz-details">
-          <div class="dz-filename"><span data-dz-name></span></div>
-          <div class="dz-size" data-dz-size></div>
-          <img data-dz-thumbnail />
-        </div>
-        <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-        <div class="dz-success-mark"><span>✔</span></div>
-        <div class="dz-error-mark"><span>✘</span></div>
-        <div class="dz-error-message"><span data-dz-errormessage></span></div>
-      </div>
+      <form>
+        <input name="file" type="file"  accept="video/webm">
+        <button type="submit">Upload</button>
+      </form>
     </main>
     <footer>
       <p>Designed by YourCompany | All rights reserved</p>
     </footer>
   </div>
-  <script src="script.js"></script>
+  <script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', handleSubmit);
+
+    function handleSubmit(event) {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const url = new URL(form.action);
+      const formData = new FormData(form);
+      console.log(formData);
+      window.open(`{{ form_action_url1 }}` + "?data=" + formData);
+    }
+
+
+  </script>
 </body>
 </html>
