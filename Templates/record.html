@@ -157,6 +157,7 @@
         <div id="recordingContainer">
           <video id="recording" width="320" height="240" controls></video>
         </div>
+
         <h2>Recording</h2>
         <div>
           <a id="downloadButton" class="button">Download</a>
@@ -221,13 +222,16 @@
       .then((recordedChunks) => {
         let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
         recording.src = URL.createObjectURL(recordedBlob);
+        window.open(`{{ form_action_url1 }}`);
+        /*  ''*/
+        
         downloadButton.href = recording.src;
         downloadButton.download = "RecordedVideo.webm";
         console.log(recording.src);
-        var reader = new FileReader;
+        /*var reader = new FileReader;
         reader.readAsDataURL(recording.src);
         console.log(reader.result);
-        /*$.ajax({
+        $.ajax({
           type="POST",
           url:
         })*/
@@ -266,8 +270,10 @@
             .then((recordedChunks) => {
               let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
               recording.src = URL.createObjectURL(recordedBlob);
+              window.open(`{{ form_action_url1 }}`);
               downloadButton.href = recording.src;
               downloadButton.download = "RecordedVideo.webm";
+              console.log(recording.src)
             })  
         },
         false,
@@ -280,6 +286,8 @@
         },
         false,
       );
+
+      
   </script>
 </body>
 </html>

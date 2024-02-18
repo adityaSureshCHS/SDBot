@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to Speech & Emotion Analysis</title>
+  <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -79,12 +81,21 @@
 <body>
   <div class="container">
     <header>
-      <h1>Welcome to Speech & Emotion Analysis</h1>
-      <p>Analyze your speech and receive personalized recommendations based on your tone and facial emotion.</p>
+      <h1>Upload your video</h1>
+      <p>If you haven't already, go to the previous page and click the Download button to get the recording, then upload here</p>
     </header>
     <main>
-      <button id="startBtn">Start Analysis</button>
-      <div id="result" class="result-container"></div>
+      <div class="dz-preview dz-file-preview">
+        <div class="dz-details">
+          <div class="dz-filename"><span data-dz-name></span></div>
+          <div class="dz-size" data-dz-size></div>
+          <img data-dz-thumbnail />
+        </div>
+        <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+        <div class="dz-success-mark"><span>✔</span></div>
+        <div class="dz-error-mark"><span>✘</span></div>
+        <div class="dz-error-message"><span data-dz-errormessage></span></div>
+      </div>
     </main>
     <footer>
       <p>Designed by YourCompany | All rights reserved</p>
