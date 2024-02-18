@@ -52,4 +52,5 @@ def analysis_display():
     return render_template("analysisdisplay.html")
 
 if __name__== '__app__':
+    app.debug = True
     app.run()

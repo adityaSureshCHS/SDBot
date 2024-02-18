@@ -84,7 +84,7 @@
       <p>If you haven't already, go to the previous page and click the Download button to get the recording, then upload here</p>
     </header>
     <main>
-      <form>
+      <form method="POST" enctype="multipart/form-data">
         <input name="file" type="file"  accept="video/webm">
         <button type="submit">Upload</button>
       </form>
@@ -103,7 +103,7 @@
       const url = new URL(form.action);
       const formData = new FormData(form);
       console.log(formData);
-      window.open(`{{ form_action_url1 }}` + "?data=" + formData);
+      window.open(`{{ form_action_url1 }}` + "?data=" + formData[entries][0]);
     }
 
 
