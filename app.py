@@ -1,3 +1,4 @@
+from flask import Flask, redirect, render_template, url_for
 import pip._vendor.requests
 # `pip3 install assemblyai` (macOS)
 # `pip install assemblyai` (Windows)
@@ -5,19 +6,19 @@ import assemblyai as aai
 aai.settings.api_key = "6353fb2f46144cfc9c2bc46924ba3689"
 transcriber = aai.Transcriber()
 
-from flask import Flask, redirect
+
 
 app = Flask(__name__)
 
 @app.route("/")
 def main():
-    return redirect("templates/main.html")
+    return render_template("main.html", form_action_url1=url_for('speech_analysis'))
 
 @app.route("/record")
 def record():
-    return redirect("templates/record.html")
+    return render_template("record.html", form_action_url1 = url_for("analyze"), home=url_for("main"))
 
-@app.route("/analyze/<video>")
+@app.route("/analyze")
 def analyze(video):
     config = aai.TranscriptionConfig(speaker_labels=True, sentiment_analysis=True)
 
@@ -33,8 +34,13 @@ def analyze(video):
         print(sentiment_result.sentiment)  # POSITIVE, NEUTRAL, or NEGATIVE
         print(sentiment_result.confidence)
         print(f"Timestamp: {sentiment_result.start} - {sentiment_result.end}")
-    return redirect("templates/analyze.html")
+    return render_template("analyze.html")
 
-
+@app.route('/speechanalysis')
+def speech_analysis():
+    return render_template("speech_analysis.html", form_action_url1=url_for('record'), home=url_for('main'))
 # transcript = transcriber.transcribe("./my-local-audio-file.wav")
 
+
+if __name__== '__app__':
+    app.run()
