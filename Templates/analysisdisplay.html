@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Argument Analysis</title>
+  <title>Guidelines for Speech Recording</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -63,21 +63,6 @@
       margin-bottom: 20px;
     }
 
-    .container a {
-      background-color: #4e54c8;
-      color: #fff; /* Changed text color to white */
-      font-size: 18px;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-      margin: 10px; /* Increased margin for better spacing */
-    }
-
     .container .analysis-details h2,
     .container .recommendations h3 {
       text-align: left;
@@ -108,22 +93,23 @@
       transition: background-color 0.3s ease;
     }
 
+    .container a {
+      background-color: #4e54c8;
+      color: #fff; /* Changed text color to white */
+      font-size: 18px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      margin: 10px; /* Increased margin for better spacing */
+    }
+
     .container button:hover {
       background-color: #3f4db8;
-    }
-
-    .text-container {
-      width: 100%;
-      margin-bottom: 20px;
-    }
-
-    .text-container textarea {
-      width: 100%;
-      padding: 15px;
-      font-size: 16px;
-      border-radius: 10px;
-      border: 2px solid #ccc;
-      box-sizing: border-box;
     }
 
     footer {
@@ -133,7 +119,8 @@
       font-size: 16px;
       animation: fadeInUp 1s ease;
     }
-
+    
+    
     .return-home-btn {
       position: absolute;
       top: 20px;
@@ -145,32 +132,27 @@
   <div class="container">
     <a href="{{home}}" class = "return-home-btn"> Return to Home Page </a>
     <header>
-      <h1>Argument Analysis Guidelines</h1>
+      <h1>Speech Recording Guidelines</h1>
     </header>
     <div class="result-container">
       <div class="analysis-details">
-        <h2>Upload the text for your argument analysis here. Here are some tips: </h2>
-        <p><strong>Clarity:</strong> Your argument should be clear and easy to understand.</p>
-        <p><strong>Pace:</strong> Your argument pace should be moderate and engaging.</p>
-        <p><strong>Tone:</strong> Your argument should be confident and persuasive.</p>
+        <h2>Tips for speech recording</h2>
+        <p><strong>Clarity:</strong> Your speech should be concise and easy to understand.</p>
+        <p><strong>Pace:</strong> Your speaking pace should be moderate and engaging.</p>
+        <p><strong>Tone:</strong> Your tone should be confident and persuasive, and fit correctly with the content of your speech.</p>
+        <p><strong>Emotion:</strong> Your facial expressions should also reflect your speech's content and should display confidence and genuinity. </p>
       </div>
       <div class="recommendations">
-        <h3>How to upload an argument</h3>
+        <h3>How to start recording:</h3>
         <ul>
-          <li>Type in or copy paste your essay into the text box below.</li>
+          <li>Press "Record New Speech" below to start a recording</li>
+          <li>Practice maintaining a consistent pace throughout the speech.</li>
           <li>Your results, feedback, and recommendations will be displayed after you finish.</li>
         </ul>
       </div>
       
-      <div class="text-container">
-        <textarea rows="10" placeholder="Enter your argument essay here..."></textarea>
-      </div>
-      
-      <button class="record-btn" onclick="window.location.href='analysisdisplay.html'">Continue to your analysis and recommendations...</button>
-    </div>
-    <footer>
-      
-    </footer>
-  </div>
+        <a href = "{{form_action_url1}}"  > Record A New Speech </a>
+    
+          
 </body>
 </html>

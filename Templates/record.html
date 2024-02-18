@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,6 +64,21 @@
       margin-bottom: 20px;
     }
 
+    .container a {
+      background-color: #4e54c8;
+      color: #fff; /* Changed text color to white */
+      font-size: 18px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      margin: 10px; /* Increased margin for better spacing */
+    }
+
     .left, .right {
       text-align: center;
     }
@@ -95,24 +109,37 @@
       color: #fff;
       font-size: 14px;
     }
+
+    .return-home-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 10px;
+      text-align: center;
+    }
   </style>
 </head>
 
 <body>
-  <a href="{{home}}" class = "return-home-btn"> Return to Home Page </a>
+  
   <div class="container">
+    <a href="{{home}}" class = "return-home-btn"> Return to Home Page </a>
     <header>
       <h1>Record</h1>
     </header>
     <main id="main">
-    
-      
       <div class="left">
-        <button id="startButton" class="button">Start Recording</button>
+        <input type="number" id="videoLength" placeholder="Enter video length (in seconds)" min="1">
+        <button id="startButton" class="button" disabled>Start Recording</button> <!-- Disabled by default -->
         <h2>Preview</h2>
         <video id="preview" width="320" height="240" autoplay muted></video>
       </div>
-      
       <div class="right">
         <button id="stopButton" class="button">Stop Recording</button>
         <h2>Recording</h2>
@@ -121,12 +148,8 @@
         </div>
         <a id="downloadButton" class="button">Download</a>
       </div>
- 
     </main>
-    
-    <footer>
-      
-    </footer>
+    <footer></footer>
   </div>
   <script>
     let preview = document.getElementById("preview");
@@ -134,7 +157,6 @@
     let startButton = document.getElementById("startButton");
     let stopButton = document.getElementById("stopButton");
     let downloadButton = document.getElementById("downloadButton");
-    let recordingTimeMS = 5000;
 
     function wait(delayInMS) {
         return new Promise((resolve) => setTimeout(resolve, delayInMS));
@@ -164,7 +186,7 @@
       function stop(stream) {
         stream.getTracks().forEach((track) => track.stop());
       }
-      
+
       startButton.addEventListener(
   "click",
   () => {
@@ -201,13 +223,48 @@
   false,
 );
 
-stopButton.addEventListener(
-  "click",
-  () => {
-    stop(preview.srcObject);
-  },
-  false,
-);
+
+      function enableStartButton() {
+        // Enable the start button if the input field is not empty
+        startButton.disabled = !document.getElementById("videoLength").value;
+      }
+      
+      document.getElementById("videoLength").addEventListener("input", enableStartButton); // Enable the start button when the user inputs a value
+
+      startButton.addEventListener(
+        "click",
+        () => {
+          let videoLength = parseInt(document.getElementById("videoLength").value) * 1000; // Convert seconds to milliseconds
+          navigator.mediaDevices
+            .getUserMedia({
+              video: true,
+              audio: true,
+            })
+            .then((stream) => {
+              preview.srcObject = stream;
+              downloadButton.href = stream;
+              preview.captureStream =
+                preview.captureStream || preview.mozCaptureStream;
+              return new Promise((resolve) => (preview.onplaying = resolve));
+            })
+            .then(() => startRecording(preview.captureStream(), videoLength))
+            .then((recordedChunks) => {
+              let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
+              recording.src = URL.createObjectURL(recordedBlob);
+              downloadButton.href = recording.src;
+              downloadButton.download = "RecordedVideo.webm";
+            })  
+        },
+        false,
+      );
+
+      stopButton.addEventListener(
+        "click",
+        () => {
+          stop(preview.srcObject);
+        },
+        false,
+      );
   </script>
 </body>
 </html>
