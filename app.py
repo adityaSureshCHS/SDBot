@@ -18,8 +18,8 @@ def main():
 def record():
     return render_template("record.html", form_action_url1 = url_for("analyze"), home=url_for("main"))
 
-@app.route("/analyze")
-def analyze(video):
+@app.route("/analyze", methods=['POST'])
+def analyze():
     config = aai.TranscriptionConfig(speaker_labels=True, sentiment_analysis=True)
 
     transcriber = aai.Transcriber()
